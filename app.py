@@ -115,7 +115,8 @@ def listar_jogadores():
     conn.close()
     return render_template('jogadores.html', jogadores=jogadores)
 
+init_db()  # Inicializa o banco de dados
+
 if __name__ == '__main__':
-    init_db()  # Inicializa o banco de dados
     debug = os.getenv('FLASK_ENV') == 'development'
     app.run(host='0.0.0.0', port=5000, debug=debug)
