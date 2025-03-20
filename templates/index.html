@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAMISETAS</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="formularioInscricao">
+            <img src="../static/incendiarioslogoi.png" alt="Logo" class="logo">
+            
+            <div class="input-box">
+                <input type="text" id="nome" placeholder="Seu Nome" required>
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="text" id="nome-camiseta" placeholder="Nome na camiseta" required>
+                <i class='bx bxs-t-shirt'></i>
+            </div>
+            <div class="input-box">
+                <select id="tamanho" class="custom-select" required>
+                    <option value="" disabled selected>Tamanho</option>
+                    <option value="P">P</option>
+                    <option value="M">M</option>
+                    <option value="G">G</option>
+                    <option value="GG">GG</option>
+                </select>
+                <i class='bx bx-chevron-down'></i>
+            </div>
+            <div class="input-box">
+                <select id="numero" class="custom-select" required>
+                    <option value="" disabled selected>Número</option>
+                    <script>
+                        for (let num = 1; num <= 99; num++) {
+                            document.write(`<option value="${num}">${num}</option>`);
+                        }
+                    </script>
+                </select>
+                <i class='bx bx-chevron-down'></i>
+            </div>
+
+            <button type="submit" class="btn">Enviar</button>
+        </form>
+    </div>
+
+    <!-- Modal para exibir mensagens -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <p id="modal-message"></p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('modal');
+            const modalMessage = document.getElementById('modal-message');
+            const closeModal = document.getElementById('close-modal');
+
+            // Função para exibir o modal com uma mensagem
+            function showModal(message) {
+                modalMessage.innerText = message;
+                modal.style.display = 'block';
+            }
+
+            // Fechar o modal ao clicar no "X"
+            closeModal.addEventListener('click', function () {
+                modal.style.display = 'none';
+            });
+
+            // Fechar o modal ao clicar fora dele
+            window.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Envio do formulário
+            document.getElementById('formularioInscricao').addEventListener('submit', async (event) => {
+                event.preventDefault();  // Impede o envio padrão do formulário
+
+                const formData = {
+                    nome: document.getElementById('nome').value,
+                    nome_camiseta: document.getElementById('nome-camiseta').value,
+                    numero: parseInt(document.getElementById('numero').value),
+                    tamanho: document.getElementById('tamanho').value,
+                };
+
+                try {
+                    const response = await fetch('http://52.67.162.176:5000/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    if (response.ok) {
+                        showModal('Inscrição realizada com sucesso!');
+                        document.getElementById('formularioInscricao').reset();  // Limpa o formulário
+                    } else {
+                        const erro = await response.json();
+                        showModal(`Erro: ${erro.message || 'Erro desconhecido'}`);
+                    }
+                } catch (erro) {
+                    showModal('Erro ao enviar inscrição. Tente novamente.');
+                    console.error('Erro:', erro);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

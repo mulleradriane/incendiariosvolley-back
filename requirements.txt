@@ -3,3 +3,4 @@ flask_httpauth
 werkzeug
 python-dotenv
 gunicorn
+flask_cors

@@ -1,0 +1,184 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('quadra.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 20px; /* Adiciona padding para telas menores */
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 60px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+.wrapper {
+    width: 90%; /* Ajusta a largura para telas menores */
+    max-width: 420px; /* Limita a largura máxima */
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    padding: 20px; /* Reduz o padding para telas menores */
+    border-radius: 10px;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    margin: 20px 0; /* Reduz a margem para telas menores */
+}
+
+.input-box input,
+.input-box select {
+    width: 100%;
+    height: 50px;
+    background: rgb(190, 34, 34);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 10px 45px 10px 20px;
+    appearance: none;
+}
+
+.input-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    pointer-events: none;
+}
+
+.input-box select option {
+    background-color: #333;
+    color: #fff;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+/* Estilo do modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: rgba(255, 255, 255, 0.9);
+    margin: 15% auto;
+    padding: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    color: #333;
+    position: relative;
+}
+
+.modal-content p {
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.close {
+    color: #fff;
+    background-color: rgba(190, 34, 34, 0.8);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 30px;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.close:hover {
+    background-color: rgba(190, 34, 34, 1);
+    color: #fff;
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 15px; /* Reduz o padding para telas menores */
+    }
+
+    .input-box input,
+    .input-box select {
+        font-size: 14px; /* Reduz o tamanho da fonte */
+    }
+
+    .modal-content {
+        margin: 20% auto; /* Ajusta a margem do modal */
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        width: 100%; /* Ocupa toda a largura em telas muito pequenas */
+        padding: 10px;
+    }
+
+    .input-box input,
+    .input-box select {
+        height: 45px; /* Reduz a altura dos inputs */
+        font-size: 12px;
+    }
+
+    .btn {
+        font-size: 14px; /* Reduz o tamanho da fonte do botão */
+    }
+
+    .modal-content {
+        width: 95%; /* Aumenta a largura do modal em telas pequenas */
+    }
+}
