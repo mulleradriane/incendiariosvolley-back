@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS jogadores (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT NOT NULL,
+    nome_camiseta TEXT NOT NULL,
+    numero INTEGER NOT NULL UNIQUE,
+    tamanho TEXT NOT NULL
+);
